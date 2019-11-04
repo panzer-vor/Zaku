@@ -1,0 +1,14 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-redux": "^7.1.5",
+    "@types/ramda": "^0.26.33",
+    "lerna": "^3.18.3"
+  },
+  "dependencies": {
+    "ramda": "^0.26.1",
+    "react": "^16.11.0"
+  }
+}

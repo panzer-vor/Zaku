@@ -1,0 +1,10 @@
+{
+  "name": "core",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "react-redux": "^7.1.1",
+    "rxjs": "^6.5.3"
+  }
+}
