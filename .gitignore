@@ -52,6 +52,7 @@ packages/*/node_modules
 */fastlane/Preview.html
 */fastlane/screenshots
 
+packages/*/lib
 # Bundle artifact
 *.jsbundle
 

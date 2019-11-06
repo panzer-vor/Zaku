@@ -41,6 +41,7 @@ const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig) => {
   } else {
     config.body = data
     if (data instanceof FormData) {
+      // @ts-ignore
       config.headers['Content-Type'] = 'multipart/form-data'
     }
   }
@@ -50,6 +51,7 @@ const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig) => {
   return ajax({
     ...defaultConfig,
     ...config,
+    // @ts-ignore
     url: defaultConfig.url + config.url,
   }).pipe(
     tap(() => {

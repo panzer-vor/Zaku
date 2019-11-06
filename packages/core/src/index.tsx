@@ -1,7 +1,6 @@
 import { store, setStateAction } from './store/index'
 import { Provider, useSelector } from 'react-redux'
 import * as React from "react"
-import setErrorHandler from './errorHandler'
 import ajax from './ajax'
 import { 
   _useState as useState,
@@ -49,7 +48,6 @@ const Zaku = {
   setStateAction,
   ajax,
   FrameworkComponent,
-  setErrorHandler,
   useRouter: (props: any) => {
     const connect: any = Zaku.connectPlatform
     return connect.useRouter(props)

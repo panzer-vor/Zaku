@@ -1,9 +1,8 @@
-import { useEffect, useRef, useCallback, useMemo, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { setStateAction, setCacheAction } from '../store/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalState } from '../types'
 import * as R from 'ramda'
-import { NavigationParams } from 'react-navigation'
 
 export const _useState = <T = any>(ModuleName: string, initialModuleState: T): [ T, (nextState: T) => void ] => {
   const dispatch = useDispatch()

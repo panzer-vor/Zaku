@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./out",
+    "outDir": "./lib",
     "module": "esnext",
     "target": "es5",
     "moduleResolution": "node",
@@ -18,5 +18,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "downlevelIteration": true
   },
-  "include": ["./packages"]
+  "include": ["./src"]
 }
