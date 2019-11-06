@@ -11,5 +11,6 @@
     "react": "^16.11.0",
     "react-redux": "^7.1.1",
     "rxjs": "^6.5.3"
-  }
+  },
+  "gitHead": "baa16149a694c53c4764a3ded8c84f3c21cec73e"
 }

@@ -21,5 +21,6 @@
   },
   "devDependencies": {
     "@types/react-native": "^0.60.22"
-  }
+  },
+  "gitHead": "baa16149a694c53c4764a3ded8c84f3c21cec73e"
 }
