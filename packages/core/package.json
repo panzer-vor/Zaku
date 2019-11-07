@@ -1,6 +1,6 @@
 {
   "name": "zaku-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "license": "MIT",
   "dependencies": {
@@ -8,9 +8,9 @@
     "@types/react": "^16.9.11",
     "@types/react-redux": "^7.1.5",
     "ramda": "^0.26.1",
+    "react": "^16.11.0",
     "react-redux": "^7.1.1",
-    "rxjs": "^6.5.3",
-    "react": "^16.11.0"
+    "rxjs": "^6.5.3"
   },
   "gitHead": "baa16149a694c53c4764a3ded8c84f3c21cec73e"
 }
