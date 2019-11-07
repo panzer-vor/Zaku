@@ -1,7 +1,7 @@
 {
   "name": "zaku-native",
   "version": "0.0.3",
-  "main": "lib/index.ts",
+  "main": "lib/index.js",
   "license": "MIT",
   "dependencies": {
     "@types/ramda": "^0.26.33",
@@ -16,11 +16,7 @@
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.10.3",
     "react-navigation-tabs": "^2.5.6",
-    "typescript": "^3.7.2",
     "zaku-core": "^0.0.3"
-  },
-  "devDependencies": {
-    "@types/react-native": "^0.60.22"
   },
   "gitHead": "baa16149a694c53c4764a3ded8c84f3c21cec73e"
 }
