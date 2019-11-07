@@ -1,5 +1,5 @@
 {
-  "name": "@zaku/native",
+  "name": "zaku-native",
   "version": "0.0.2",
   "main": "lib/index.ts",
   "license": "MIT",
@@ -7,7 +7,7 @@
     "@types/ramda": "^0.26.33",
     "@types/react": "^16.9.11",
     "@types/react-redux": "^7.1.5",
-    "@zaku/core": "^0.0.2",
+    "zaku-core": "^0.0.2",
     "ramda": "^0.26.1",
     "react": "^16.11.0",
     "react-native": "^0.61.3",
