@@ -7,12 +7,12 @@ import React from 'react'
 import Zaku from 'zaku-core'
 import { setJSExceptionHandler as setErrorHandler } from 'react-native-exception-handler'
 
-const connectPlatform = {
+const connect = {
   useRouter: _useRouter
 }
 
 const createNativeApp = (appName: string, cp: React.FC) => {
-  Zaku.connectPlatform = connectPlatform
+  Zaku.connectPlatform = connect
   AppRegistry.registerComponent(appName, () => cp)
 }
 

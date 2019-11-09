@@ -1,5 +1,7 @@
 import Zaku from './core'
 
+export default Zaku
+
 export const { 
   connectPlatform,
   useState,
