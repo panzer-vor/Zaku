@@ -4,7 +4,7 @@ import {
 } from './hooks/index'
 import { AppRegistry } from 'react-native';
 import React from 'react'
-import Zaku from '@zaku/core'
+import Zaku from 'zaku-core'
 import { setJSExceptionHandler as setErrorHandler } from 'react-native-exception-handler'
 
 const connectPlatform = {
