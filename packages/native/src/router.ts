@@ -13,13 +13,15 @@ interface TabsMap {
   tabName: string
 }
 
-const createRouter = (options, tabOptions?: any) => {
+const createRouter = (options: any, tabOptions?: any) => {
   const stacks = R.compose(
     R.map(({
       tabName,
       tabLen,
     }: TabsMap) => {
-      const tab = R.view(tabLen, options)
+      const tab: {
+        [key: string]: React.FC
+      } = R.view(tabLen, options)
       const stackMap = {}
       Object.entries(tab).forEach(([key, val]: [string, React.FC]) => {
         stackMap[key] = {

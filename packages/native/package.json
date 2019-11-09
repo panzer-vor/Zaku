@@ -4,9 +4,6 @@
   "main": "lib/index.js",
   "license": "MIT",
   "dependencies": {
-    "@types/ramda": "^0.26.33",
-    "ramda": "^0.26.1",
-    "react-native": "^0.61.3",
     "react-native-exception-handler": "^2.10.8",
     "react-native-gesture-handler": "^1.5.0",
     "react-native-reanimated": "^1.4.0",
@@ -17,6 +14,5 @@
   },
   "gitHead": "031cd6adcc6654a29f40be0e16aff2e956775305",
   "devDependencies": {
-    "@types/react-native": "^0.60.22"
   }
 }
