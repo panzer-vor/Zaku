@@ -1,11 +1,7 @@
 {
   "name": "zaku-core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "lib/index.js",
   "license": "MIT",
-  "dependencies": {
-  },
-  "gitHead": "031cd6adcc6654a29f40be0e16aff2e956775305",
-  "devDependencies": {
-  }
+  "gitHead": "031cd6adcc6654a29f40be0e16aff2e956775305"
 }
