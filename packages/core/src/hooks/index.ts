@@ -25,12 +25,12 @@ export const _useState = <T = any>(ModuleName: string, initialModuleState: T): [
   ]
 }
 
-export const _useUpdate = (fn: React.EffectCallback, updateControls?: any[]) => {
+export const _useUpdate = (fn: React.EffectCallback, controls?: any[]) => {
   const mounted = useRef(false)
 
-  updateControls ? useEffect(() => {
+  controls ? useEffect(() => {
     !mounted.current ? mounted.current = true : fn()
-  }, updateControls) : useEffect(() => {
+  }, controls) : useEffect(() => {
     !mounted.current ? mounted.current = true : fn()
   })
 }
@@ -43,8 +43,8 @@ export const _useUnmount = (fn: React.EffectCallback) => {
   }, [])
 }
 
-export const _useRender = (fn: React.EffectCallback) => {
-  useEffect(() => fn(), [])
+export const _useRender = (fn: React.EffectCallback, controls = []) => {
+  useEffect(() => fn(), controls)
 }
 
 
