@@ -5,12 +5,14 @@
   "license": "MIT",
   "dependencies": {
     "@types/ramda": "^0.26.33",
-    "@types/react": "^16.11.0",
-    "@types/react-redux": "^7.1.5",
     "ramda": "^0.26.1",
     "react": "^16.11.0",
     "react-redux": "^7.1.5",
     "rxjs": "^6.5.3"
   },
-  "gitHead": "031cd6adcc6654a29f40be0e16aff2e956775305"
+  "gitHead": "031cd6adcc6654a29f40be0e16aff2e956775305",
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-redux": "^7.1.5"
+  }
 }
