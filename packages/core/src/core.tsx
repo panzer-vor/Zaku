@@ -51,7 +51,8 @@ const Zaku = {
   useRouter: (props: any) => {
     const connect: any = Zaku.connectPlatform
     return connect.useRouter(props)
-  }
+  },
+  getStore: () => store,
 }
 
 export default Zaku

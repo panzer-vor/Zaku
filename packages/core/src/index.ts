@@ -12,4 +12,5 @@ export const {
   ajax,
   FrameworkComponent,
   useRouter,
+  getStore,
 } = Zaku
