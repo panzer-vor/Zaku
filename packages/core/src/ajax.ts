@@ -13,13 +13,6 @@ const getCacheKey = R.compose(
   R.values,
 )
 
-const getCacheData = R.compose(
-  R.flip(
-    R.prop(store.getState().cache),
-  ),
-  getCacheKey,
-)
-
 const handleGetData = R.compose(
   R.join('&'),
   R.map(
@@ -29,13 +22,11 @@ const handleGetData = R.compose(
 )
 
 const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig) => {
-  const cacheData = getCacheData(config)
 
   const data = config.data
   const method = config.method || defaultConfig.method
 
   if (method === 'GET') {
-    if (cacheData) return of(cacheData)
     const headerQuery = handleGetData(config.data)
     config.url += headerQuery ? `?${headerQuery}` : headerQuery
   } else {
@@ -46,6 +37,17 @@ const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig) => {
     }
   }
 
+  const cacheKey = getCacheKey(config)
+
+  const cacheData = store.getState().cache[cacheKey]
+  if (method === 'GET') {
+    if (cacheData)
+      return of({
+        cacheData,
+        cacheKey,
+      });
+  }
+  
   config.loading ? store.dispatch(setLoadingAction(true)) : null
 
   return ajax({
@@ -58,7 +60,7 @@ const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig) => {
       store.dispatch(setLoadingAction(false))
     }),
     map(res => ({
-      cacheKey: getCacheKey(config),
+      cacheKey,
       ...res
     }))
   )
