@@ -1,4 +1,5 @@
-import { ajax, AjaxRequest } from 'rxjs/ajax'
+import { ajax, AjaxRequest, AjaxResponse } from 'rxjs/ajax'
+import { Observable } from 'rxjs'
 import * as Ramda from 'ramda'
 import { of } from 'rxjs'
 import { store } from './store/index'
@@ -21,7 +22,17 @@ const handleGetData = R.compose(
   R.toPairs,
 )
 
-const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig) => {
+const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig): Observable<{
+  originalEvent?: Event;
+  xhr?: XMLHttpRequest;
+  request?: AjaxRequest;
+  status?: number;
+  response?: any;
+  responseText?: string;
+  responseType?: string;
+  cacheKey: string;
+  cacheData?: any;
+}> => {
 
   const data = config.data
   const method = config.method || defaultConfig.method
@@ -37,17 +48,16 @@ const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig) => {
     }
   }
 
-  const cacheKey = getCacheKey(config)
+  const cacheKey: string = getCacheKey(config)
 
   const cacheData = store.getState().cache[cacheKey]
-  if (method === 'GET') {
-    if (cacheData)
-      return of({
-        cacheData,
-        cacheKey,
-      });
+  if (method === 'GET' && cacheData) {
+    return of({
+      cacheData,
+      cacheKey,
+    });
   }
-  
+
   config.loading ? store.dispatch(setLoadingAction(true)) : null
 
   return ajax({
