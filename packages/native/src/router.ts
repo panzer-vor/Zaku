@@ -76,14 +76,16 @@ const registryRouter = (components: any[], tabOptions?: any) => {
   } else {
     components.forEach(v => {
       const { name } = v.navigationOptions
-      maps[name] = v
+      maps[name] = {
+        screen: v
+      }
     })
-    return createStackNavigator(
+    return  createAppContainer(createStackNavigator(
       maps,
       {
         initialRouteName: components[0].navigationOptions.name
       }
-    )
+    ))
   }
 }
 
