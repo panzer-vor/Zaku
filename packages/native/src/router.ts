@@ -2,6 +2,7 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator, NavigationStackScreenComponent } from 'react-navigation-stack'
 import { createBottomTabNavigator   } from 'react-navigation-tabs'
 import * as R from 'ramda'
+import { create } from 'istanbul-reports'
 
 interface LensProp {
   <T, U>(obj: T): U
@@ -63,14 +64,27 @@ const registryRouter = (components: any[], tabOptions?: any) => {
   const maps: {
     [key: string]: any
   } = {}
-  components.forEach(v => {
-    const { name } = v.navigationOptions
-    const [tabName, stackName] = name.split('/')
-    const newName = stackName || tabName
-    v.name = newName
-    maps[tabName] = R.assoc(newName, v, maps[tabName])
-  })
-  return createRouter(maps, tabOptions)
+  if (components.some(v => v.navigationOptions.name.indexOf('/') > -1)) {
+    components.forEach(v => {
+      const { name } = v.navigationOptions
+      const [tabName, stackName] = name.split('/')
+      const newName = stackName || tabName
+      v.name = newName
+      maps[tabName] = R.assoc(newName, v, maps[tabName])
+    })
+    return createRouter(maps, tabOptions)
+  } else {
+    components.forEach(v => {
+      const { name } = v.navigationOptions
+      maps[name] = v
+    })
+    return createStackNavigator(
+      maps,
+      {
+        initialRouteName: components[0].navigationOptions.name
+      }
+    )
+  }
 }
 
 export default registryRouter

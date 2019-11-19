@@ -1,4 +1,4 @@
-import { ajax, AjaxRequest, AjaxResponse } from 'rxjs/ajax'
+import { ajax, AjaxRequest } from 'rxjs/ajax'
 import { Observable } from 'rxjs'
 import * as Ramda from 'ramda'
 import { of } from 'rxjs'

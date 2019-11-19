@@ -12,6 +12,7 @@ const connect = {
 }
 
 const createNativeApp = (appName: string, cp: React.FC) => {
+  // @ts-ignore
   Zaku.connectPlatform = connect
   AppRegistry.registerComponent(appName, () => cp)
 }
