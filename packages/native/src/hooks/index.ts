@@ -1,10 +1,6 @@
 import { NavigationParams } from 'react-navigation'
 
-export const _useRouter = ({
-  navigation
-}: {
-  navigation: NavigationParams
-}) => {
+export const _useRouter = (navigation: NavigationParams) => {
   return {
     replace: navigation.navigate,
     push: navigation.push,

@@ -5,10 +5,11 @@ import {
 import { AppRegistry } from 'react-native';
 import React from 'react'
 import Zaku from 'zaku-core'
-import { setJSExceptionHandler as setErrorHandler } from 'react-native-exception-handler'
+import { setJSExceptionHandler as _setErrorHandler } from 'react-native-exception-handler'
 
 const connect = {
-  useRouter: _useRouter
+  useRouter: _useRouter,
+  setErrorHandler: _setErrorHandler,
 }
 
 const createNativeApp = (appName: string, cp: React.FC) => {
@@ -19,5 +20,4 @@ const createNativeApp = (appName: string, cp: React.FC) => {
 export {
   registryRouter,
   createNativeApp,
-  setErrorHandler,
 }

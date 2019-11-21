@@ -4,7 +4,7 @@ import * as React from "react"
 import ajax from './ajax'
 import { 
   _useState as useState,
-  _useUnmount as useUnmount,
+  _useUnMount as useUnMount,
   _useRender as useRender,
   _useUpdate as useUpdate,
 } from './hooks/index'
@@ -22,7 +22,6 @@ const LoadingWrapper = (props: {
         loadingStatus ? props.fallback : null
       }
     </React.Fragment>
-
   )
 }
 
@@ -42,15 +41,19 @@ const FrameworkComponent = (props: {
 const Zaku = {
   connectPlatform: {},
   useState,
-  useUnmount,
+  useUnMount,
   useRender,
   useUpdate,
   setStateAction,
   ajax,
   FrameworkComponent,
-  useRouter: (props: any) => {
+  useRouter: (navigation: any) => {
     const connect: any = Zaku.connectPlatform
-    return connect.useRouter(props)
+    return connect.useRouter(navigation)
+  },
+  setErrorHandler: (...params: any) => {
+    const connect: any = Zaku.connectPlatform
+    return connect.setErrorHandler(...params)
   },
   getStore: () => store,
 }

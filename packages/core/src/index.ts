@@ -5,7 +5,7 @@ export default Zaku
 export const { 
   connectPlatform,
   useState,
-  useUnmount,
+  useUnMount,
   useRender,
   useUpdate,
   setStateAction,
@@ -13,4 +13,5 @@ export const {
   FrameworkComponent,
   useRouter,
   getStore,
+  setErrorHandler,
 } = Zaku

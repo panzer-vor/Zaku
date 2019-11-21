@@ -35,7 +35,7 @@ export const _useUpdate = (fn: React.EffectCallback, controls?: any[]) => {
   })
 }
 
-export const _useUnmount = (fn: React.EffectCallback) => {
+export const _useUnMount = (fn: React.EffectCallback) => {
   useEffect(() => {
     return () => {
       fn()
