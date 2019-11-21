@@ -3,5 +3,8 @@
   "version": "0.0.15",
   "main": "lib/index.js",
   "license": "MIT",
+  "scripts": {
+    "tsc": "tsc"
+  },
   "gitHead": "031cd6adcc6654a29f40be0e16aff2e956775305"
 }

@@ -13,7 +13,11 @@ interface TabsMap {
   tabName: string
 }
 
-const createRouter = (options: any, tabOptions?: any) => {
+const createStackRouter = (options) => {
+  
+}
+
+const createTabRouter = (options: any, tabOptions?: any) => {
   const stacks = R.compose(
     R.map(({
       tabName,
@@ -63,14 +67,28 @@ const registryRouter = (components: any[], tabOptions?: any) => {
   const maps: {
     [key: string]: any
   } = {}
-  components.forEach(v => {
-    const { name } = v.navigationOptions
-    const [tabName, stackName] = name.split('/')
-    const newName = stackName || tabName
-    v.name = newName
-    maps[tabName] = R.assoc(newName, v, maps[tabName])
-  })
-  return createRouter(maps, tabOptions)
+
+  if (components.some(v => v.navigationOptions.indexOf('/') > -1)) {
+    components.forEach(v => {
+      const { name } = v.navigationOptions
+      const [tabName, stackName] = name.split('/')
+      const newName = stackName || tabName
+      v.name = newName
+      maps[tabName] = R.assoc(newName, v, maps[tabName])
+    })
+    return createTabRouter(maps, tabOptions)
+  } else {
+    components.forEach(v => {
+      const { name } = v.navigationOptions
+      const [tabName, stackName] = name.split('/')
+      const newName = stackName || tabName
+      v.name = newName
+      maps[tabName] = R.assoc(newName, v, maps[tabName])
+    })
+    return createStackRouter(maps)
+  }
+
+
 }
 
 export default registryRouter

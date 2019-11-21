@@ -3,6 +3,9 @@
   "version": "0.0.15",
   "main": "lib/index.js",
   "license": "MIT",
+  "scripts": {
+    "tsc": "tsc"
+  },
   "dependencies": {
     "react-native-exception-handler": "^2.10.8",
     "react-native-gesture-handler": "^1.5.0",
