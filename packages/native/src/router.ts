@@ -1,4 +1,4 @@
-import { createAppContainer } from 'react-navigation'
+import { createAppContainer, NavigationTabRouterConfig } from 'react-navigation'
 import { createStackNavigator, NavigationStackScreenComponent } from 'react-navigation-stack'
 import { createBottomTabNavigator   } from 'react-navigation-tabs'
 import * as R from 'ramda'
@@ -13,11 +13,40 @@ interface TabsMap {
   tabName: string
 }
 
-const createStackRouter = (options) => {
-  
+interface Component<P = {}> {
+  (props: Readonly<P>): JSX.Element
+  navigationOptions: {
+    name: string
+    title: string
+  }
 }
 
-const createTabRouter = (options: any, tabOptions?: any) => {
+const createStackRouter = (components: Component[]) => {
+  const maps = {}
+  components.forEach(v => {
+    const { name } = v.navigationOptions
+    maps[name] = {
+      screen: v
+    }
+  })
+  return createAppContainer(createStackNavigator(
+    maps,
+    {
+      initialRouteName: components[0].navigationOptions.name
+    }
+  ))
+}
+
+const createTabRouter = (components: Component[], tabOptions?: NavigationTabRouterConfig) => {
+  const maps: {
+    [key: string]: any
+  } = {}
+  components.forEach(v => {
+    const { name } = v.navigationOptions
+    const [tabName, stackName] = name.split('/')
+    const newName = stackName || tabName
+    maps[tabName] = R.assoc(newName, v, maps[tabName])
+  })
   const stacks = R.compose(
     R.map(({
       tabName,
@@ -25,7 +54,7 @@ const createTabRouter = (options: any, tabOptions?: any) => {
     }: TabsMap) => {
       const tab: {
         [key: string]: React.FC
-      } = R.view(tabLen, options)
+      } = R.view(tabLen, maps)
       const stackMap = {}
       Object.entries(tab).forEach(([key, val]: [string, React.FC]) => {
         stackMap[key] = {
@@ -42,7 +71,7 @@ const createTabRouter = (options: any, tabOptions?: any) => {
       tabLen: R.lensProp(v),
     })),
     R.keys,
-  )(options)
+  )(maps)
 
   const tabMap = {}
 
@@ -63,32 +92,12 @@ const createTabRouter = (options: any, tabOptions?: any) => {
   return createAppContainer(tabNavigator)
 }
 
-const registryRouter = (components: any[], tabOptions?: any) => {
-  const maps: {
-    [key: string]: any
-  } = {}
-
-  if (components.some(v => v.navigationOptions.indexOf('/') > -1)) {
-    components.forEach(v => {
-      const { name } = v.navigationOptions
-      const [tabName, stackName] = name.split('/')
-      const newName = stackName || tabName
-      v.name = newName
-      maps[tabName] = R.assoc(newName, v, maps[tabName])
-    })
-    return createTabRouter(maps, tabOptions)
+const registryRouter = (components: Component[], tabOptions?: NavigationTabRouterConfig) => {
+  if (components.some(v => v.navigationOptions.name.indexOf('/') > -1)) {
+    return createTabRouter(components, tabOptions)
   } else {
-    components.forEach(v => {
-      const { name } = v.navigationOptions
-      const [tabName, stackName] = name.split('/')
-      const newName = stackName || tabName
-      v.name = newName
-      maps[tabName] = R.assoc(newName, v, maps[tabName])
-    })
-    return createStackRouter(maps)
+    return createStackRouter(components)
   }
-
-
 }
 
 export default registryRouter

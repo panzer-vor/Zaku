@@ -1,4 +1,4 @@
-import { ajax, AjaxRequest, AjaxResponse } from 'rxjs/ajax'
+import { ajax, AjaxRequest } from 'rxjs/ajax'
 import { Observable } from 'rxjs'
 import * as Ramda from 'ramda'
 import { of } from 'rxjs'
@@ -23,17 +23,16 @@ const handleGetData = R.compose(
 )
 
 const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig): Observable<{
-  originalEvent?: Event;
-  xhr?: XMLHttpRequest;
-  request?: AjaxRequest;
-  status?: number;
-  response?: any;
-  responseText?: string;
-  responseType?: string;
-  cacheKey: string;
-  cacheData?: any;
+  originalEvent?: Event
+  xhr?: XMLHttpRequest
+  request?: AjaxRequest
+  status?: number
+  response?: any
+  responseText?: string
+  responseType?: string
+  cacheKey: string
+  cacheData?: any
 }> => {
-
   const data = config.data
   const method = config.method || defaultConfig.method
 
@@ -43,14 +42,16 @@ const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig): Observabl
   } else {
     config.body = data
     if (data instanceof FormData) {
-      // @ts-ignore
+      if (!config.headers) {
+        config.headers = {}
+      } 
       config.headers['Content-Type'] = 'multipart/form-data'
     }
   }
 
   const cacheKey: string = getCacheKey(config)
-
   const cacheData = store.getState().cache[cacheKey]
+
   if (method === 'GET' && cacheData) {
     return of({
       cacheData,
@@ -58,13 +59,12 @@ const ajaxJson = (defaultConfig: AjaxRequest) => (config: AjaxConfig): Observabl
     });
   }
 
-  config.loading ? store.dispatch(setLoadingAction(true)) : null
+  config.loading && store.dispatch(setLoadingAction(true))
 
   return ajax({
     ...defaultConfig,
     ...config,
-    // @ts-ignore
-    url: defaultConfig.url + config.url,
+    url: defaultConfig.url! + config.url,
   }).pipe(
     tap(() => {
       store.dispatch(setLoadingAction(false))

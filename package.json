@@ -13,6 +13,7 @@
     "react": "^16.11.0",
     "react-native": "^0.61.4",
     "react-redux": "^7.1.3",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "zaku-core": "^0.0.17"
   }
 }
