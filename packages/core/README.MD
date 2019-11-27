@@ -4,7 +4,17 @@ Zaku is a frontend framework based on react, redux, react-redux,rxjs it's design
 # Platform
 native -> zaku-native
 
-# USEAGE
+# USAGE
+```
+npm i react react-redux redux ramda rxjs zaku-core -S
+npm i @types/ramda @types/react @types/react-redux -D
+// native
+npm i zaku-native react-native -S
+npm i @types/react-native -D
+```
+
+
+# API
 ## hooks
 ```useState```
 ```javascript
